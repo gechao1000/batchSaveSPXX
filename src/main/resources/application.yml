@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    platform: oracle
+    url: jdbc:oracle:thin:@198.20.7.162:1521/BUSHOP
+    username: BUSHOPOWNER
+    password: B52stR8yhnim8z1Z
+
+sql:
+  spxx: SELECT BARCODE, SP_ID, SPCODE, NAME, PYM , SB , ( SELECT NAME FROM S_SPSB_000003 WHERE SBID = SB ) AS SBNAME FROM S_SPXX_000003
+  spkczt-fdbh: SELECT DISTINCT FDBH FROM S_SPKCZT_000003 ORDER BY FDBH
+  spkczt: SELECT a.FDBH , ( SELECT FDMC FROM BUSHOPOWNER.S_FDDEF_000003 WHERE FDBH = a.FDBH ) AS FDMC, a.SP_ID, v.BARCODE, a.HTH, a.SXBJ , to_char(a.HTYXQ_START, 'yyyy-MM-dd') AS HTYXQ_START , to_char(a.HTYXQ_END, 'yyyy-MM-dd') AS HTYXQ_END, a.GHDWDM , a.HSFS, a.JXSL, a.JHDJ_HS, a.LSDJ, a.STATUS , a.DEPTID, a.KCSL, a.SWKCSL, a.DHSL, a.THSL , a.PHSL, a.WJHSL, a.PJXSSL, a.PJXSSL_CX , to_char(a.ZHXSRQ, 'yyyy-MM-dd') AS ZHXSRQ , to_char(a.YJDHRQ, 'yyyy-MM-dd') AS YJDHRQ , to_char(a.ZHJHRQ, 'yyyy-MM-dd') AS ZHJHRQ, a.RJXL7 , a.RJXL28, a.RJXL35, a.ZXXSTS, a.ZJXSSL, a.RJXL_DT4 , a.LXSTS, a.YXWDTS, a.RQ , CASE  WHEN a.JHDJ_HS - a.LSDJ > 0 THEN -1 ELSE 0 END AS FML FROM S_SPKCZT_000003 A, V_S_SPXX_000003 V WHERE a.SP_ID = V.SP_ID AND a.GHDWDM = v.GHDW AND A.FDBH = %d
